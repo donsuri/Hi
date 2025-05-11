@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesticide Business Logo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+        
+        .logo-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 20px;
+        }
+        
+        .shield {
+            position: absolute;
+            width: 70%;
+            height: 80%;
+            background-color: #006400; /* Dark green */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            left: 15%;
+            top: 10%;
+            border: 3px solid #000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .plant {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .stem {
+            position: absolute;
+            width: 8px;
+            height: 80px;
+            background-color: #FFD700; /* Gold */
+            left: 50%;
+            top: 35%;
+            transform: translateX(-50%);
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 30px;
+            background-color: #FFD700; /* Gold */
+            border-radius: 50%;
+        }
+        
+        .leaf-1 { left: 45%; top: 40%; }
+        .leaf-2 { left: 35%; top: 35%; transform: rotate(-30deg); }
+        .leaf-3 { left: 55%; top: 35%; transform: rotate(30deg); }
+        
+        .business-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            color: #8B4513; /* Brown */
+            font-style: italic;
+        }
+        
+        .controls {
+            margin-top: 30px;
+            padding: 20px;
+            background: #eee;
+            border-radius: 8px;
+            max-width: 500px;
+        }
+        
+        input, button {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            background-color: #006400;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        
+        button:hover {
+            background-color: #004d00;
+        }
+        
+        .color-preview {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo">
+            <div class="shield"></div>
+            <div class="plant">
+                <div class="stem"></div>
+                <div class="leaf leaf-1"></div>
+                <div class="leaf leaf-2"></div>
+                <div class="leaf leaf-3"></div>
+            </div>
+        </div>
+        
+        <div class="business-name">GreenShield Pesticides</div>
+        <div class="tagline">Protecting Your Crops</div>
+        
+        <div class="controls">
+            <h3>Customize Your Logo</h3>
+            <div>
+                <label>Business Name: </label>
+                <input type="text" id="businessName" value="GreenShield Pesticides">
+            </div>
+            <div>
+                <label>Tagline: </label>
+                <input type="text" id="tagline" value="Protecting Your Crops">
+            </div>
+            <div>
+                <label>Shield Color: </label>
+                <input type="color" id="shieldColor" value="#006400">
+                <span class="color-preview" id="shieldPreview" style="background-color: #006400;"></span>
+            </div>
+            <div>
+                <label>Plant Color: </label>
+                <input type="color" id="plantColor" value="#FFD700">
+                <span class="color-preview" id="plantPreview" style="background-color: #FFD700;"></span>
+            </div>
+            <div>
+                <label>Text Color: </label>
+                <input type="color" id="textColor" value="#333333">
+                <span class="color-preview" id="textPreview" style="background-color: #333333;"></span>
+            </div>
+            <div>
+                <label>Tagline Color: </label>
+                <input type="color" id="taglineColor" value="#8B4513">
+                <span class="color-preview" id="taglinePreview" style="background-color: #8B4513;"></span>
+            </div>
+            <button onclick="updateLogo()">Update Logo</button>
+            <button onclick="downloadLogo()">Download Logo</button>
+        </div>
+    </div>
+
+    <script>
+        function updateLogo() {
+            // Get values from inputs
+            const businessName = document.getElementById('businessName').value;
+            const tagline = document.getElementById('tagline').value;
+            const shieldColor = document.getElementById('shieldColor').value;
+            const plantColor = document.getElementById('plantColor').value;
+            const textColor = document.getElementById('textColor').value;
+            const taglineColor = document.getElementById('taglineColor').value;
+            
+            // Update logo elements
+            document.querySelector('.shield').style.backgroundColor = shieldColor;
+            document.querySelector('.stem').style.backgroundColor = plantColor;
+            document.querySelectorAll('.leaf').forEach(leaf => {
+                leaf.style.backgroundColor = plantColor;
+            });
+            
+            // Update text
+            document.querySelector('.business-name').textContent = businessName;
+            document.querySelector('.business-name').style.color = textColor;
+            document.querySelector('.tagline').textContent = tagline;
+            document.querySelector('.tagline').style.color = taglineColor;
+            
+            // Update color previews
+            document.getElementById('shieldPreview').style.backgroundColor = shieldColor;
+            document.getElementById('plantPreview').style.backgroundColor = plantColor;
+            document.getElementById('textPreview').style.backgroundColor = textColor;
+            document.getElementById('taglinePreview').style.backgroundColor = taglineColor;
+        }
+        
+        function downloadLogo() {
+            alert("In a real implementation, this would convert the logo to an image and download it.\nFor now, you can take a screenshot of your logo.");
+            // For a complete implementation, you would use a library like html2canvas
+            // to convert the logo div to an image and download it
+        }
+        
+        // Initialize color picker previews
+        document.getElementById('shieldColor').addEventListener('input', function() {
+            document.getElementById('shieldPreview').style.backgroundColor = this.value;
+        });
+        
+        document.getElementById('plantColor').addEventListener('input', function() {
+            document.getElementById('plantPreview').style.backgroundColor = this.value;
+        });
+        
+        document.getElementById('textColor').addEventListener('input', function() {
+            document.getElementById('textPreview').style.backgroundColor = this.value;
+        });
+        
+        document.getElementById('taglineColor').addEventListener('input', function() {
+            document.getElementById('taglinePreview').style.backgroundColor = this.value;
+        });
+    </script>
+</body>
+</html>
